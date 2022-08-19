@@ -1,11 +1,10 @@
-import * as tokenService from '../services/tokenService'
+// import * as tokenService from '../services/tokenService'
 const BASE_URL = '/api/animes'
 
 function searchAnimes() {
-    return fetch(BASE_URL, {
-        headers: { Authorization: `Bearer ${tokenService.getToken()}` }
-    })
+    return fetch(BASE_URL)
         .then(res => res.json())
+        .catch(error => console.log(error))
 }
 
 export {
