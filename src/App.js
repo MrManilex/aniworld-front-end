@@ -22,9 +22,9 @@ function App() {
       {animes ?
         <>
           {animes.map(anime =>
-            <>
+            <div key={anime.id}>
               <p>{anime.title.romaji}</p>
-            </>
+            </div>
           )}
         </>
         :
