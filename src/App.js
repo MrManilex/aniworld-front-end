@@ -5,20 +5,34 @@ import { searchAnimes } from './services/animeService';
 
 function App() {
   const [animes, setAnimes] = useState(null)
+  const [formData, setFormData] = useState({
+    title: ''
+  })
 
-  function search() {
-    searchAnimes()
-      .then(animes => {
-        setAnimes(animes)
-      }).catch(error => {
-        console.log(error)
-      })
+  function search(userInput) {
+    // searchAnimes(userInput)
+    //   .then(animes => {
+    //     setAnimes(animes)
+    //   }).catch(error => {
+    //     console.log(error)
+    //   })
+    console.log('SEARCHED')
+  }
+
+  const handleChange = e => {
+    setFormData({
+      formData,
+      [e.target.name]: e.target.value
+    })
   }
 
 
   return (
     <div className="App">
-      <button onClick={search}>Click me to search for Demon Slayer!!</button>
+      <form autoComplete='off' onSubmit={search}>
+        <input className="input" type="text" name="search" placeholder="Search Anime" autoComplete="off" onChange={handleChange}/>
+      </form>
+      {/* <button onClick={search}>Click me to search for Demon Slayer!!</button> */}
       {animes ?
         <>
           {animes.map(anime =>
@@ -28,7 +42,7 @@ function App() {
           )}
         </>
         :
-        <div>click the button!!</div>
+        <div>Search Anime!</div>
       }
     </div>
   );
