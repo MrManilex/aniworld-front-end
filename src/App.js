@@ -9,14 +9,22 @@ function App() {
     title: ''
   })
 
-  function search(userInput) {
-    // searchAnimes(userInput)
-    //   .then(animes => {
-    //     setAnimes(animes)
-    //   }).catch(error => {
-    //     console.log(error)
-    //   })
-    console.log('SEARCHED')
+  // function handleSearch() {
+  //   searchAnimes(formData.search)
+  //     .then(animes => {
+  //       setAnimes(animes)
+  //     }).catch(error => {
+  //       console.log(error)
+  //     })
+  // }
+  const handleSearch = evt => {
+    evt.preventDefault()
+    searchAnimes(formData)
+      .then(animes => {
+        setAnimes(animes)
+      }).catch(error => {
+        console.log(error)
+      })
   }
 
   const handleChange = e => {
@@ -26,10 +34,14 @@ function App() {
     })
   }
 
+  // if(formData){
+  //   console.log(formData.search)
+  // }
+
 
   return (
     <div className="App">
-      <form autoComplete='off' onSubmit={search}>
+      <form autoComplete='off' onSubmit={handleSearch}>
         <input className="input" type="text" name="search" placeholder="Search Anime" autoComplete="off" onChange={handleChange}/>
       </form>
       {/* <button onClick={search}>Click me to search for Demon Slayer!!</button> */}
@@ -37,7 +49,8 @@ function App() {
         <>
           {animes.map(anime =>
             <div key={anime.id}>
-              <p>{anime.title.romaji}</p>
+              <p>Romaji: {anime.title.romaji} English: {anime.title.english}</p>
+              <p>Description: {anime.description}</p>
             </div>
           )}
         </>
