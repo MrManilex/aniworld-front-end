@@ -2,8 +2,6 @@
 const BASE_URL = '/api/animes'
 
 function searchAnimes(title) {
-    console.log('The title searched:', title, 'is the type ->', typeof title)
-
     return fetch(BASE_URL, {
         method: 'POST',
         headers: {

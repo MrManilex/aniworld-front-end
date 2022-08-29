@@ -9,14 +9,6 @@ function App() {
     title: ''
   })
 
-  // function handleSearch() {
-  //   searchAnimes(formData.search)
-  //     .then(animes => {
-  //       setAnimes(animes)
-  //     }).catch(error => {
-  //       console.log(error)
-  //     })
-  // }
   const handleSearch = evt => {
     evt.preventDefault()
     searchAnimes(formData)
@@ -34,22 +26,20 @@ function App() {
     })
   }
 
-  // if(formData){
-  //   console.log(formData.search)
-  // }
-
 
   return (
     <div className="App">
       <form autoComplete='off' onSubmit={handleSearch}>
         <input className="input" type="text" name="search" placeholder="Search Anime" autoComplete="off" onChange={handleChange}/>
       </form>
-      {/* <button onClick={search}>Click me to search for Demon Slayer!!</button> */}
       {animes ?
         <>
           {animes.map(anime =>
             <div key={anime.id}>
-              <p>Romaji: {anime.title.romaji} English: {anime.title.english}</p>
+              <img src={anime.bannerImage} alt={`${anime.title.romaji}'s banner image`} />
+              <img src={anime.coverImage.large} alt={anime.title.romaji} />
+              {/* <p>{anime.coverImage.medium}</p> */}
+              <p>{anime.title.romaji}</p>
               <p>Description: {anime.description}</p>
             </div>
           )}
