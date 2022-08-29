@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { searchAnimes } from '../../services/animeService';
 import Navbar from '../../components/Navbar/Navbar';
 import AnimeSearch from "../../components/AnimeSearch/AnimeSearch";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   const [animes, setAnimes] = useState(null)
@@ -31,7 +32,9 @@ function App() {
   return (
     <>
       <Navbar />
-      <AnimeSearch animes={animes} handleChange={handleChange} handleSearch={handleSearch} />
+      <Routes>
+        <Route path='/search/anime' element={<AnimeSearch animes={animes} handleChange={handleChange} handleSearch={handleSearch} />} />
+      </Routes>
     </>
   );
 }
