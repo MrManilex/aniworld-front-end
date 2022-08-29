@@ -1,7 +1,7 @@
-import './App.css';
+import "./App.css"
 import { useState } from 'react';
-import { searchAnimes } from './services/animeService';
-import Navbar from './components/Navbar';
+import { searchAnimes } from '../../services/animeService';
+import Navbar from '../../components/Navbar';
 
 function App() {
   const [animes, setAnimes] = useState(null)
