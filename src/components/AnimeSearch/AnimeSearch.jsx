@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react'
+// import { useState } from 'react'
 // import { searchAnimes } from '../../services/animeService'
 
 export default function AnimeSearch({ animes, handleChange, handleSearch }) {
