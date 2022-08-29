@@ -1,4 +1,3 @@
-// import logo from './logo.svg'
 import './App.css';
 import { useState } from 'react';
 import { searchAnimes } from './services/animeService';
@@ -36,9 +35,8 @@ function App() {
         <>
           {animes.map(anime =>
             <div key={anime.id}>
-              <img src={anime.bannerImage} alt={`${anime.title.romaji}'s banner image`} />
+              <img src={anime.bannerImage} alt={`${anime.title.romaji}'s banner`} />
               <img src={anime.coverImage.large} alt={anime.title.romaji} />
-              {/* <p>{anime.coverImage.medium}</p> */}
               <p>{anime.title.romaji}</p>
               <p>Description: {anime.description}</p>
             </div>
