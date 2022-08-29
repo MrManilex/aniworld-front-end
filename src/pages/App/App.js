@@ -2,6 +2,7 @@ import "./App.css"
 import { useState } from 'react';
 import { searchAnimes } from '../../services/animeService';
 import Navbar from '../../components/Navbar/Navbar';
+import AnimeSearch from "../../components/AnimeSearch/AnimeSearch";
 
 function App() {
   const [animes, setAnimes] = useState(null)
@@ -30,25 +31,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <div className="App">
-        <form autoComplete='off' onSubmit={handleSearch}>
-          <input className="input" type="text" name="search" placeholder="Search Anime" autoComplete="off" onChange={handleChange}/>
-        </form>
-        {animes ?
-          <>
-            {animes.map(anime =>
-              <div key={anime.id}>
-                <img src={anime.bannerImage} alt={`${anime.title.romaji}'s banner`} />
-                <img src={anime.coverImage.large} alt={anime.title.romaji} />
-                <p>{anime.title.romaji}</p>
-                <p>Description: {anime.description}</p>
-              </div>
-            )}
-          </>
-          :
-          <div>Search Anime!</div>
-        }
-      </div>
+      <AnimeSearch animes={animes} handleChange={handleChange} handleSearch={handleSearch} />
     </>
   );
 }
