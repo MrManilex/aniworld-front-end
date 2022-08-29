@@ -40,7 +40,8 @@ function App() {
     <>
       <Navbar />
       <Routes>
-        <Route path='/home' element={<AnimeSearch animes={animes} handleChange={handleChange} handleSearch={handleSearch} />} />
+        <Route path='/home' />
+        <Route path='/search/anime' element={<AnimeSearch animes={animes} handleChange={handleChange} handleSearch={handleSearch} />} />
       </Routes>
     </>
   );
