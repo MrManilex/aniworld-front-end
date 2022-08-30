@@ -44,7 +44,7 @@ function App() {
       <Routes>
         <Route path='/home' />
         <Route path='/login' element={<Login />} />
-        <Route path='/home' element={<Signup />} />
+        <Route path='/signup' element={<Signup />} />
         <Route path='/search/anime' element={<AnimeSearch animes={animes} handleChange={handleChange} handleSearch={handleSearch} />} />
       </Routes>
     </>

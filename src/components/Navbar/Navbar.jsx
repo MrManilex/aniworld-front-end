@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 export default function Navbar() {
     const [loggedIn, setIsLoggedIn] = useState(false)
@@ -43,7 +43,7 @@ export default function Navbar() {
                 }
                 {!loggedIn &&
                     <>
-                        <a className="btn btn-secondary">Log In</a>
+                        <Link className="btn btn-secondary" to="/login">Login</Link>
                     </>
                 }
             </div>
