@@ -7,6 +7,7 @@ import Navbar from '../../components/Navbar/Navbar';
 import AnimeSearch from "../../components/AnimeSearch/AnimeSearch";
 import Login from "../Login/Login";
 import Signup from "../Signup/Signup";
+import Home from "../Home/Home";
 
 function App() {
   const [animes, setAnimes] = useState(null)
@@ -45,7 +46,7 @@ function App() {
     <>
       <Navbar />
       <Routes>
-        <Route path='/home' />
+        <Route path='/home' element={user ? <Home /> : <Navigate to='/login' />} />
         <Route path='/login' element={!user ? <Login /> : <Navigate to='/home' />} />
         <Route path='/signup' element={!user ? <Signup /> : <Navigate to='/home' />} />
         <Route path='/search/anime' element={<AnimeSearch animes={animes} handleChange={handleChange} handleSearch={handleSearch} />} />
