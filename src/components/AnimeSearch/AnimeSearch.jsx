@@ -16,6 +16,14 @@ export default function AnimeSearch({ animes, handleChange, handleSearch }) {
                             <img src={anime.coverImage.large} alt={anime.title.romaji} />
                             <p>{anime.title.romaji}</p>
                             <p>Description: {anime.description}</p>
+                            {anime.trailer &&
+                                <>
+                                    <iframe width="560" height="315" src={`https://www.youtube.com/embed/${anime.trailer.id}`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                                </>
+                            }
+                            {!anime.trailer &&
+                                <p>No Trailer</p>
+                            }
                         </div>
                     )}
                 </>
