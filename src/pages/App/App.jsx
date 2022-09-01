@@ -4,7 +4,7 @@ import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { searchAnimes } from '../../services/animeService';
 import { useAuthContext } from "../../hooks/useAuthContext";
 import Navbar from '../../components/Navbar/Navbar';
-import AnimeSearch from "../../components/AnimeSearch/AnimeSearch";
+import AnimeSearch from '../AnimeSearch/AnimeSearch';
 import Login from "../Login/Login";
 import Signup from "../Signup/Signup";
 import Home from "../Home/Home";
