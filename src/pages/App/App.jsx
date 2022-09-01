@@ -1,9 +1,10 @@
 import "./App.css"
 import { useEffect, useState } from 'react';
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { searchAnimes } from '../../services/animeService';
+import { useAuthContext } from "../../hooks/useAuthContext";
 import Navbar from '../../components/Navbar/Navbar';
 import AnimeSearch from "../../components/AnimeSearch/AnimeSearch";
-import { Route, Routes, useNavigate } from "react-router-dom";
 import Login from "../Login/Login";
 import Signup from "../Signup/Signup";
 
@@ -12,6 +13,8 @@ function App() {
   const [formData, setFormData] = useState({
     title: ''
   })
+
+  const { user } = useAuthContext()
 
   const navigate = useNavigate()
 
@@ -43,8 +46,8 @@ function App() {
       <Navbar />
       <Routes>
         <Route path='/home' />
-        <Route path='/login' element={<Login />} />
-        <Route path='/signup' element={<Signup />} />
+        <Route path='/login' element={!user ? <Login /> : <Navigate to='/home' />} />
+        <Route path='/signup' element={!user ? <Signup /> : <Navigate to='/home' />} />
         <Route path='/search/anime' element={<AnimeSearch animes={animes} handleChange={handleChange} handleSearch={handleSearch} />} />
       </Routes>
     </>
