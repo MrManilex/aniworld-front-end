@@ -1,9 +1,15 @@
 import React from 'react'
-import { useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { useLogout } from '../../hooks/useLogout'
+import { useAuthContext } from '../../hooks/useAuthContext'
 
 export default function Navbar() {
-    const [loggedIn, setIsLoggedIn] = useState(false)
+    const { logout } = useLogout()
+    const { user } = useAuthContext()
+
+    const handleClick = () => {
+        logout()
+    }
 
     return (
         <div className="navbar bg-base-100">
@@ -17,7 +23,8 @@ export default function Navbar() {
                 </ul>
             </div>
             <div className="flex-none gap-2 navbar-end">
-                {loggedIn &&
+
+                {user &&
                     <>
                         <div className="form-control">
                             <input type="text" placeholder="Search" className="input input-bordered" />
@@ -36,12 +43,12 @@ export default function Navbar() {
                                     </a>
                                 </li>
                                 <li><a>Settings</a></li>
-                                <li><a>Logout</a></li>
+                                <li><button onClick={handleClick}>Logout</button></li>
                             </ul>
                         </div>
                     </>
                 }
-                {!loggedIn &&
+                {!user &&
                     <>
                         <Link className="btn btn-secondary" to="/login">Login</Link>
                         <Link className="btn btn-info" to="/signup">Sign Up</Link>
