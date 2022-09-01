@@ -44,6 +44,7 @@ export default function Navbar() {
                 {!loggedIn &&
                     <>
                         <Link className="btn btn-secondary" to="/login">Login</Link>
+                        <Link className="btn btn-info" to="/signup">Sign Up</Link>
                     </>
                 }
             </div>
