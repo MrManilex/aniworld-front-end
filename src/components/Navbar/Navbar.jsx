@@ -53,7 +53,7 @@ export default function Navbar() {
                 }
                 {!user &&
                     <>
-                        <Link className="btn btn-secondary" to="/login">Login</Link>
+                        <Link className="btn btn-ghost" to="/login">Login</Link>
                         <Link className="btn btn-info" to="/signup">Sign Up</Link>
                     </>
                 }
