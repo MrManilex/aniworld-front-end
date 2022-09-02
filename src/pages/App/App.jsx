@@ -8,6 +8,7 @@ import AnimeSearch from '../AnimeSearch/AnimeSearch';
 import Login from "../Login/Login";
 import Signup from "../Signup/Signup";
 import Home from "../Home/Home";
+import AnimeDetails from '../AnimeDetails/AnimeDetails';
 
 function App() {
   const [animes, setAnimes] = useState(null)
@@ -50,6 +51,7 @@ function App() {
         <Route path='/login' element={!user ? <Login /> : <Navigate to='/home' />} />
         <Route path='/signup' element={!user ? <Signup /> : <Navigate to='/home' />} />
         <Route path='/search/anime' element={<AnimeSearch animes={animes} handleChange={handleChange} handleSearch={handleSearch} />} />
+        <Route path='/anime/:id' element={<AnimeDetails />} />
       </Routes>
     </>
   );
