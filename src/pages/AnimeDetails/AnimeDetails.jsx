@@ -16,10 +16,10 @@ export default function AnimeDetails() {
                         <p>{anime.title.romaji}</p>
                     </div>
                 </div>
-                <p>Description: {anime.description}</p>
+                <p dangerouslySetInnerHTML={{__html: anime.description}}></p>
                 {anime.trailer &&
                     <>
-                        <iframe width="560" height="315" src={`https://www.youtube.com/embed/${anime.trailer.id}`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                        <iframe width="560" height="315" src={`https://www.youtube-nocookie.com/embed/${anime.trailer.id}`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                     </>
                 }
                 {!anime.trailer &&
