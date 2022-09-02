@@ -20,14 +20,14 @@ export default function Navbar() {
                 <ul className='menu menu-horizontal p-0 gap-2'>
                     <li><Link to="/home">Home</Link></li>
                     {/* <li><Link to="/profile">Profile</Link></li> */}
-                    <li><Link to="/browse"style={{pointerEvents: 'none'}}>Browse</Link></li>
+                    <li><Link to="/browse" style={{ pointerEvents: 'none' }}>Browse</Link></li>
                     <li><Link to="/search/anime">Anime</Link></li>
-                    <li><Link to="/search/manga"style={{pointerEvents: 'none'}}>Manga</Link></li>
+                    <li><Link to="/search/manga" style={{ pointerEvents: 'none' }}>Manga</Link></li>
                     <li><Link to="/news">News</Link></li>
                 </ul>
             </div>
             <div className="flex-none gap-2 navbar-end">
- 
+
                 {user &&
                     <>
                         <div className="form-control">
