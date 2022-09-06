@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 // import { useLogout } from '../../hooks/useLogout'
 // import { useAuthContext } from '../../hooks/useAuthContext'
 
-export default function Navbar({ user, handleLogout}) {
+export default function Navbar({ user, handleLogout }) {
     // const { logout } = useLogout()
     // const { user } = useAuthContext()
     // const user = props.user
@@ -27,12 +27,12 @@ export default function Navbar({ user, handleLogout}) {
                 {user &&
                     <>
                         <div className="form-control">
-                            <input type="text" placeholder="Search" className="input input-bordered" />
+                            {/* <input type="text" placeholder="Search" className="input input-bordered" /> */}
                         </div>
                         <div className="dropdown dropdown-end">
                             <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
                                 <div className="w-10 rounded-full">
-                                    <img src="https://placeimg.com/80/80/people" />
+                                    <span className="text-2xl">{user.email[0]}</span>
                                 </div>
                             </label>
                             <ul tabIndex="0" className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
