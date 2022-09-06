@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { searchAnimes } from '../../services/animeService';
 import { useAuthContext } from "../../hooks/useAuthContext";
+import { useLogout } from '../../hooks/useLogout'
 import Navbar from '../../components/Navbar/Navbar';
 import AnimeSearch from '../AnimeSearch/AnimeSearch';
 import Login from "../Login/Login";
@@ -17,7 +18,7 @@ function App() {
   })
 
   const { user } = useAuthContext()
-
+  const { logout } = useLogout()
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -41,11 +42,15 @@ function App() {
     })
   }
 
-
+  const handleLogout = () => {
+    logout()
+    setAnimes(null)
+    navigate('/home')
+  }
 
   return (
     <>
-      <Navbar animes={animes} user={user}/>
+      <Navbar handleLogout={handleLogout} user={user} />
       <Routes>
         <Route path='/home' element={user ? <Home /> : <Navigate to='/login' />} />
         <Route path='/login' element={!user ? <Login /> : <Navigate to='/home' />} />

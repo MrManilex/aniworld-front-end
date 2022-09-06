@@ -1,18 +1,13 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { useLogout } from '../../hooks/useLogout'
+// import { useLogout } from '../../hooks/useLogout'
 // import { useAuthContext } from '../../hooks/useAuthContext'
 
-export default function Navbar(props) {
-    const { logout } = useLogout()
+export default function Navbar({ user, handleLogout}) {
+    // const { logout } = useLogout()
     // const { user } = useAuthContext()
-    const user = props.user
+    // const user = props.user
     const navigate = useNavigate()
-
-    const handleClick = () => {
-        logout()
-        navigate('/home')
-    }
 
     return (
         <div className="navbar bg-base-100 w-8/12 m-auto">
@@ -48,7 +43,7 @@ export default function Navbar(props) {
                                     </a>
                                 </li>
                                 <li><a>Settings</a></li>
-                                <li><button onClick={handleClick}>Logout</button></li>
+                                <li><button onClick={handleLogout}>Logout</button></li>
                             </ul>
                         </div>
                     </>
