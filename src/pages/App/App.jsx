@@ -45,7 +45,7 @@ function App() {
 
   return (
     <>
-      <Navbar />
+      <Navbar animes={animes} user={user}/>
       <Routes>
         <Route path='/home' element={user ? <Home /> : <Navigate to='/login' />} />
         <Route path='/login' element={!user ? <Login /> : <Navigate to='/home' />} />
