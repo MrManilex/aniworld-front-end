@@ -16,7 +16,7 @@ export default function Navbar() {
     return (
         <div className="navbar bg-base-100 w-8/12 m-auto">
             <div className="navbar-start">
-                <a className="btn btn-ghost normal-case text-xl">AniWorld</a>
+                <Link to="/home" className="btn btn-ghost normal-case text-xl">AniWorld</Link>
                 <ul className='menu menu-horizontal p-0 gap-2'>
                     <li><Link to="/home">Home</Link></li>
                     {/* <li><Link to="/profile">Profile</Link></li> */}
