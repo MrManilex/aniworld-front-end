@@ -10,7 +10,7 @@ export default function AnimeSearch({ animes, handleChange, handleSearch }) {
                         <input className="input input-bordered w-full max-w-xs" type="text" name="search" placeholder="Search Anime" autoComplete="off" onChange={handleChange} />
                     </form>
                 </div>
-                <div className='flex flex-row flex-wrap'>
+                <div className='flex flex-row flex-wrap place-content-center'>
                     {animes &&
                         <>
                             {animes.map(anime =>
