@@ -16,9 +16,8 @@ const Home = () => {
     return (
         <>
             <main>
-                <div className='text-center'>
-                    <h2 className="text-4xl m-5">Home Page</h2>
-                </div>
+                <h2 className="text-center text-4xl m-5">Home Page</h2>
+                <h2 className="text-left text-4xl m-5 ">Trending Now</h2>
                 <div className='flex flex-row flex-wrap place-content-center'>
                     {trending &&
                         <>
