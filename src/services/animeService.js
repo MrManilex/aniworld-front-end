@@ -13,6 +13,14 @@ function searchAnimes(title) {
         .catch(error => console.log(error))
 }
 
+function getTrending() {
+    return fetch(`${BASE_URL}/trending`, {
+        method: 'POST'
+    })
+        .then(res => res.json())
+}
+
 export {
-    searchAnimes
+    searchAnimes,
+    getTrending
 }

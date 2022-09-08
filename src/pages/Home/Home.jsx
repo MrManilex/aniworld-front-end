@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { getTrending } from '../../services/animeService'
 // import { useAuthContext } from '../../hooks/useAuthContext';
 
 const Home = () => {
@@ -8,11 +9,12 @@ const Home = () => {
     const [trending, setTrending] = useState()
 
     useEffect(() => {
+        console.log('finding trending')
         getTrending()
         .then(animes => {
             setTrending(animes)
         })
-    }, [trending]);
+    }, []);
 
     return (
         <>
