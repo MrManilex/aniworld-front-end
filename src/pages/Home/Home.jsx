@@ -1,8 +1,18 @@
 import React from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
 // import { useAuthContext } from '../../hooks/useAuthContext';
 
 const Home = () => {
     // const { user } = useAuthContext()
+    const [trending, setTrending] = useState()
+
+    useEffect(() => {
+        getTrending()
+        .then(animes => {
+            setTrending(animes)
+        })
+    }, [trending]);
 
     return (
         <>
