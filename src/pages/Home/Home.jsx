@@ -2,14 +2,11 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import { getTrending } from '../../services/animeService'
-// import { useAuthContext } from '../../hooks/useAuthContext';
 
 const Home = () => {
-    // const { user } = useAuthContext()
     const [trending, setTrending] = useState()
 
     useEffect(() => {
-        console.log('finding trending')
         getTrending()
             .then(animes => {
                 setTrending(animes)
