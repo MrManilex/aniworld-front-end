@@ -24,7 +24,7 @@ export default function AnimeSearch({ animes, handleChange, handleSearch }) {
                                             </Link>
                                         </div>
                                         <div className='text-center my-2'>
-                                            <h2 className='font-bold'>{anime.title.romaji}</h2>
+                                            <h2 className='font-bold'>{anime.title.english ? anime.title.english : anime.title.userPreferred}</h2>
                                         </div>
                                     </div>
                                 </div>
