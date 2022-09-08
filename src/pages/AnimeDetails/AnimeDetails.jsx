@@ -8,12 +8,12 @@ export default function AnimeDetails() {
         <>
             <main>
                 {anime.bannerImage &&
-                    <img src={anime.bannerImage} alt={`${anime.title.romaji}'s banner`} />
+                    <img src={anime.bannerImage} alt={`${anime.title.english ? anime.title.english : anime.title.userPreferred}'s banner`} />
                 }
                 <div>
-                    <img src={anime.coverImage.large} alt={anime.title.romaji} />
+                    <img src={anime.coverImage.large} alt={anime.title.english ? anime.title.english : anime.title.userPreferred} />
                     <div className='text-center'>
-                        <p>{anime.title.romaji}</p>
+                        <p>{anime.title.english ? anime.title.english : anime.title.userPreferred}</p>
                     </div>
                 </div>
                 <p dangerouslySetInnerHTML={{ __html: anime.description }}></p>
