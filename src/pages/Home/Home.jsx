@@ -1,8 +1,8 @@
 import React from 'react';
-import { useAuthContext } from '../../hooks/useAuthContext';
+// import { useAuthContext } from '../../hooks/useAuthContext';
 
 const Home = () => {
-    const { user } = useAuthContext()
+    // const { user } = useAuthContext()
 
     return (
         <>
