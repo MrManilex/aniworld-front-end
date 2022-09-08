@@ -23,7 +23,7 @@ function App() {
 
   useEffect(() => {
     navigate('/home')
-  })
+  }, [])
 
   const handleSearch = evt => {
     evt.preventDefault()
