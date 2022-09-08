@@ -1,21 +1,14 @@
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-// import { useLogout } from '../../hooks/useLogout'
-// import { useAuthContext } from '../../hooks/useAuthContext'
+import { Link } from 'react-router-dom'
+
 
 export default function Navbar({ user, handleLogout }) {
-    // const { logout } = useLogout()
-    // const { user } = useAuthContext()
-    // const user = props.user
-    const navigate = useNavigate()
-
     return (
         <div className="navbar bg-base-100 w-8/12 m-auto">
             <div className="navbar-start">
                 <Link to="/home" className="btn btn-ghost normal-case text-xl">AniWorld</Link>
                 <ul className='menu menu-horizontal p-0 gap-2'>
                     <li><Link to="/home">Home</Link></li>
-                    {/* <li><Link to="/profile">Profile</Link></li> */}
                     <li><Link to="/browse" style={{ pointerEvents: 'none' }}>Browse</Link></li>
                     <li><Link to="/search/anime">Anime</Link></li>
                     <li><Link to="/search/manga" style={{ pointerEvents: 'none' }}>Manga</Link></li>
@@ -37,12 +30,12 @@ export default function Navbar({ user, handleLogout }) {
                             </label>
                             <ul tabIndex="0" className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
                                 <li>
-                                    <a className="justify-between">
+                                    <Link to="/profile">
                                         Profile
-                                        <span className="badge">New</span>
-                                    </a>
+                                        {/* <span className="badge">New</span> */}
+                                    </Link>
                                 </li>
-                                <li><a>Settings</a></li>
+                                <li><Link to="/profile/settings">Settings</Link></li>
                                 <li><button onClick={handleLogout}>Logout</button></li>
                             </ul>
                         </div>
