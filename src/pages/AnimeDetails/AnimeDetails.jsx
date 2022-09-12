@@ -3,7 +3,6 @@ import { useLocation } from 'react-router-dom'
 export default function AnimeDetails() {
     const location = useLocation()
     const anime = location.state
-    console.log(anime)
 
     return (
         <>
