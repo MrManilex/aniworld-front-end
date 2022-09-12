@@ -1,4 +1,3 @@
-// import "./App.css"
 import { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { searchAnimes } from '../../services/animeService';
