@@ -10,6 +10,7 @@ import Login from "../Login/Login";
 import Signup from "../Signup/Signup";
 import Home from "../Home/Home";
 import AnimeDetails from '../AnimeDetails/AnimeDetails';
+import Profile from '../Profile/Profile';
 
 function App() {
   const [profile, setProfile] = useState(null)
@@ -53,9 +54,14 @@ function App() {
     <>
       <Navbar handleLogout={handleLogout} user={user} />
       <Routes>
-        <Route path='/home' element={user ? <Home user={user} /> : <Navigate to='/login' />} />
-        <Route path='/login' element={!user ? <Login setAnimes={setAnimes} /> : <Navigate to='/home' />} />
+        <Route path='/home' element={user ? <Home /> : <Navigate to='/login' />} />
+        <Route path='/login' element={!user ? <Login /> : <Navigate to='/home' />} />
         <Route path='/signup' element={!user ? <Signup /> : <Navigate to='/home' />} />
+
+        {/* Profile Section  */}
+        <Route path='/user/:username' element={user ? <Profile user={user} /> : <Login />} />
+
+        {/* Anime Section */}
         <Route path='/search/anime' element={<AnimeSearch animes={animes} handleChange={handleChange} handleSearch={handleSearch} />} />
         <Route path='/anime/:id' element={<AnimeDetails />} />
       </Routes>
