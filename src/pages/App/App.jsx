@@ -4,12 +4,13 @@ import { searchAnimes } from '../../services/animeService';
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useLogout } from '../../hooks/useLogout'
 import Navbar from '../../components/Navbar/Navbar';
-import AnimeSearch from '../AnimeSearch/AnimeSearch';
 import Login from "../Login/Login";
 import Signup from "../Signup/Signup";
 import Home from "../Home/Home";
+import AnimeSearch from '../AnimeSearch/AnimeSearch';
 import AnimeDetails from '../AnimeDetails/AnimeDetails';
 import Profile from '../Profile/Profile';
+import ProfileSettings from '../ProfileSettings/ProfileSettings';
 
 function App() {
   const [profile, setProfile] = useState(null)
@@ -57,8 +58,9 @@ function App() {
         <Route path='/login' element={!user ? <Login /> : <Navigate to='/home' />} />
         <Route path='/signup' element={!user ? <Signup /> : <Navigate to='/home' />} />
 
-        {/* Profile Section  */}
+        {/* Profile Section */}
         <Route path='/user/:username' element={user ? <Profile user={user} /> : <Login />} />
+        <Route path='/user/settings' element={user ? <ProfileSettings user={user} /> : <Login />} />
 
         {/* Anime Section */}
         <Route path='/search/anime' element={<AnimeSearch animes={animes} handleChange={handleChange} handleSearch={handleSearch} />} />
