@@ -12,6 +12,7 @@ import Home from "../Home/Home";
 import AnimeDetails from '../AnimeDetails/AnimeDetails';
 
 function App() {
+  const [profile, setProfile] = useState(null)
   const [animes, setAnimes] = useState(null)
   const [formData, setFormData] = useState({
     title: ''
@@ -53,7 +54,7 @@ function App() {
       <Navbar handleLogout={handleLogout} user={user} />
       <Routes>
         <Route path='/home' element={user ? <Home user={user} /> : <Navigate to='/login' />} />
-        <Route path='/login' element={!user ? <Login setAnimes={setAnimes}/> : <Navigate to='/home' />} />
+        <Route path='/login' element={!user ? <Login setAnimes={setAnimes} /> : <Navigate to='/home' />} />
         <Route path='/signup' element={!user ? <Signup /> : <Navigate to='/home' />} />
         <Route path='/search/anime' element={<AnimeSearch animes={animes} handleChange={handleChange} handleSearch={handleSearch} />} />
         <Route path='/anime/:id' element={<AnimeDetails />} />
