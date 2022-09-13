@@ -17,10 +17,10 @@ const Home = () => {
         <>
             <main>
                 <h2 className="text-center text-4xl m-5">Home Page</h2>
-                <h2 className="text-left text-4xl m-5 ">Trending Now</h2>
-                <div className='flex flex-row flex-wrap place-content-center'>
+                <div>
+                    <h2 className="text-4xl my-6 mx-8">Trending Now</h2>
                     {trending &&
-                        <>
+                        <div className='flex flex-row flex-wrap mx-5'>
                             {trending.map(anime =>
                                 <div key={anime.id} className='mx-8 mb-2'>
                                     <div className='w-60'>
@@ -37,7 +37,7 @@ const Home = () => {
                                     </div>
                                 </div>
                             )}
-                        </>
+                        </div>
                     }
                 </div>
             </main>
