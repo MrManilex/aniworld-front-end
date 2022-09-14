@@ -27,8 +27,8 @@ export default function AnimeDetails() {
                 <div className='flex flex-row mx-8 mt-8'>
                     <div className='flex flex-col w-3/12 '>
                         <p>{`Popularity: ${anime.popularity}`}</p>
-                        <p>{`Status: ${anime.status}`}</p>
-                        <p>{`Episodes: ${anime.episodes}`}</p>
+                        {anime.status === 'NOT_YET_RELEASED' ? <p>Status: Unreleased</p> : <p>{`Status: ${anime.status}`}</p>}
+                        {anime.episodes === null ? <p>Episodes: TBA</p> : <p>{`Episodes: ${anime.episodes}`}</p>}
                         {/* Fix Dates based on data given */}
                         {anime.startDate.year &&
                             <>
