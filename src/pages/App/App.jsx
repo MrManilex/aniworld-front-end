@@ -13,7 +13,6 @@ import Profile from '../Profile/Profile';
 import ProfileSettings from '../ProfileSettings/ProfileSettings';
 
 function App() {
-  const [profile, setProfile] = useState(null)
   const [animes, setAnimes] = useState(null)
   const [formData, setFormData] = useState({
     title: ''
