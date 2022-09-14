@@ -9,6 +9,7 @@ export default function AnimeSearch({ animes, handleChange, handleSearch }) {
                 <div className='text-center my-8'>
                     <form autoComplete='off' onSubmit={handleSearch}>
                         <input className="input input-bordered w-full max-w-xs" type="text" name="search" placeholder="Search Anime" autoComplete="off" onChange={handleChange} />
+                        <button className='btn btn-primary mx-4'>Search</button>
                     </form>
                 </div>
                 {animes ?
