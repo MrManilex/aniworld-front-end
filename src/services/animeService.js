@@ -20,7 +20,15 @@ function getTrending() {
         .then(res => res.json())
 }
 
+function getUpcoming() {
+    return fetch(`${BASE_URL}/upcoming`, {
+        method: 'POST'
+    })
+        .then(res => res.json())
+}
+
 export {
     searchAnimes,
-    getTrending
+    getTrending,
+    getUpcoming
 }

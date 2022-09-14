@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Trending from '../../components/Trending/Trending'
+import Upcoming from '../../components/Upcoming/Upcoming'
 
 export default function AnimeSearch({ animes, handleChange, handleSearch }) {
     return (
@@ -32,7 +33,10 @@ export default function AnimeSearch({ animes, handleChange, handleSearch }) {
                         )}
                     </div>
                     :
-                    <Trending />
+                    <>
+                        <Trending />
+                        <Upcoming />
+                    </>
                 }
             </main>
         </>
