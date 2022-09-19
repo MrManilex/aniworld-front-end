@@ -27,8 +27,16 @@ function getUpcoming() {
         .then(res => res.json())
 }
 
+function getATPopular() {
+    return fetch(`${BASE_URL}/atpopular`, {
+        method: 'POST'
+    })
+        .then(res => res.json())
+}
+
 export {
     searchAnimes,
     getTrending,
-    getUpcoming
+    getUpcoming,
+    getATPopular
 }

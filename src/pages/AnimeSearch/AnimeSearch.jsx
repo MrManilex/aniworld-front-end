@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import ATPopular from '../../components/ATPopular/ATPopular'
 import Trending from '../../components/Trending/Trending'
 import Upcoming from '../../components/Upcoming/Upcoming'
 
@@ -36,6 +37,7 @@ export default function AnimeSearch({ animes, handleChange, handleSearch }) {
                     <>
                         <Trending />
                         <Upcoming />
+                        <ATPopular />
                     </>
                 }
             </main>
