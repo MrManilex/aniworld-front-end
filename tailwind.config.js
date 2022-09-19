@@ -29,7 +29,7 @@ module.exports = {
   plugins: [
     require('daisyui'),
   ],
-  content: [,
+  content: [
     "./src/components/**/*",
     "./src/pages/**/*"
   ],
