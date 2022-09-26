@@ -1,8 +1,13 @@
+import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 
 export default function AnimeDetails() {
     const location = useLocation()
     const anime = location.state
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     return (
         <>
@@ -13,7 +18,7 @@ export default function AnimeDetails() {
                 }
                 <div className='flex justify-center'>
                     <div className='mt-5'>
-                        <img  src={anime.coverImage.large} alt={anime.title.english ? anime.title.english : anime.title.userPreferred} />
+                        <img src={anime.coverImage.large} alt={anime.title.english ? anime.title.english : anime.title.userPreferred} />
                         <div className='flex flex-col'>
                             <button className='justify-self-center btn btn-info mt-5'>Add To Watching</button>
                             <button className='justify-self-center btn btn-secondary mt-5'>Add To Planning</button>
