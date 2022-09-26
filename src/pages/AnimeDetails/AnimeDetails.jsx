@@ -8,14 +8,15 @@ export default function AnimeDetails() {
         <>
             <main className='items-center'>
                 {anime.bannerImage &&
-                    <>
-                        <div className='bg-center'>
-                            <img src={anime.bannerImage} alt={`${anime.title.english ? anime.title.english : anime.title.userPreferred}'s banner`} />
+                    <div>
+                        {/* <img src={anime.bannerImage} alt={`${anime.title.english ? anime.title.english : anime.title.userPreferred}'s banner`} /> */}
+                        <div className="bg-no-repeat bg-cover bg-center h-80" style={{backgroundImage: `url('${anime.bannerImage}')`}}>
                         </div>
-                    </>
+                    </div>
                 }
                 <div className='flex mx-8'>
-                    <img className='self-center' src={anime.coverImage.large} alt={anime.title.english ? anime.title.english : anime.title.userPreferred} />
+                    <img className='place-self-start' src={anime.coverImage.large} alt={anime.title.english ? anime.title.english : anime.title.userPreferred} />
+                    {/* <button className='place-self-end'>Add To Watching</button> */}
                     <div className='m-8'>
                         <div className='text-center mb-4'>
                             <p className='text-2xl'>{anime.title.english ? anime.title.english : anime.title.userPreferred}</p>
