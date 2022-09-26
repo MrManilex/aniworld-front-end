@@ -1,5 +1,18 @@
-// import * as tokenService from '../services/tokenService'
 const BASE_URL = '/api/animes'
+
+function getToken() {
+    let user = localStorage.getItem('user')
+    let parsedUser = JSON.parse(user)
+    let token = parsedUser.token
+    // if (token) {
+    //     const payload = JSON.parse(atob(token.split('.')[1]))
+    //     if (payload.exp < Date.now() / 1000) {
+    //         localStorage.removeItem('user')
+    //         token = null
+    //     }
+    // }
+    return token
+}
 
 function searchAnimes(title) {
     return fetch(BASE_URL, {
@@ -34,9 +47,23 @@ function getATPopular() {
         .then(res => res.json())
 }
 
+function addToWatching(animeData) {
+    return fetch(`${BASE_URL}/${animeData.animeId}/add-to-watching`, {
+        method: 'PATCH',
+        headers: {
+            'Authorization': `Bearer ${getToken()}`, 'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(animeData)
+    })
+        .then(res => {
+            res.json()
+        })
+}
+
 export {
     searchAnimes,
     getTrending,
     getUpcoming,
-    getATPopular
+    getATPopular,
+    addToWatching
 }

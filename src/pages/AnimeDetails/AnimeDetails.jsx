@@ -1,13 +1,22 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
+import { addToWatching } from '../../services/animeService'
 
 export default function AnimeDetails() {
     const location = useLocation()
     const anime = location.state
+    const [formData, setFormData] = useState({
+        animeTitle: anime.title.userPreferred,
+        animeId: anime.id,
+    })
 
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
+
+    const handleAddToWatching = () => {
+        addToWatching(formData)
+    }
 
     return (
         <>
@@ -20,7 +29,7 @@ export default function AnimeDetails() {
                     <div className='mt-5'>
                         <img src={anime.coverImage.large} alt={anime.title.english ? anime.title.english : anime.title.userPreferred} />
                         <div className='flex flex-col'>
-                            <button className='justify-self-center btn btn-info mt-5'>Add To Watching</button>
+                            <button onClick={handleAddToWatching} className='justify-self-center btn btn-info mt-5'>Add To Watching</button>
                             <button className='justify-self-center btn btn-secondary mt-5'>Add To Planning</button>
                         </div>
                     </div>
