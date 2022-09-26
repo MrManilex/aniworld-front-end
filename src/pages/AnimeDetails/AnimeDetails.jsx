@@ -12,8 +12,13 @@ export default function AnimeDetails() {
                     </div>
                 }
                 <div className='flex justify-center'>
-                    <img className='place-self-center' src={anime.coverImage.large} alt={anime.title.english ? anime.title.english : anime.title.userPreferred} />
-                    {/* <button className='place-self-end'>Add To Watching</button> */}
+                    <div className='mt-5'>
+                        <img  src={anime.coverImage.large} alt={anime.title.english ? anime.title.english : anime.title.userPreferred} />
+                        <div className='flex flex-col'>
+                            <button className='justify-self-center btn btn-info mt-5'>Add To Watching</button>
+                            <button className='justify-self-center btn btn-secondary mt-5'>Add To Planning</button>
+                        </div>
+                    </div>
                     <div className='m-8 w-3/5'>
                         <div className='text-center mb-4'>
                             <p className='text-2xl'>{anime.title.english ? anime.title.english : anime.title.userPreferred}</p>
@@ -22,8 +27,8 @@ export default function AnimeDetails() {
                     </div>
                 </div>
 
-                <div className='flex flex-row mx-8 mt-8'>
-                    <div className='flex flex-col w-3/12 '>
+                <div className='flex justify-around my-5'>
+                    <div className='flex flex-col'>
                         <p>{`Popularity: ${anime.popularity}`}</p>
                         {anime.status === 'NOT_YET_RELEASED' ? <p>Status: Unreleased</p> : <p>{`Status: ${anime.status}`}</p>}
                         {anime.episodes === null ? <p>Episodes: TBA</p> : <p>{`Episodes: ${anime.episodes}`}</p>}
@@ -34,10 +39,15 @@ export default function AnimeDetails() {
                                 <p>{anime.startDate.month}/{anime.startDate.day}/{anime.startDate.year}</p>
                             </>
                         }
-                        {anime.endDate.year &&
+                        {anime.endDate.year ?
                             <>
                                 <h3>End Date</h3>
                                 <p>{anime.endDate.month}/{anime.endDate.day}/{anime.endDate.year}</p>
+                            </>
+                            :
+                            <>
+                                <h3>End Date</h3>
+                                <p>TBA</p>
                             </>
                         }
                     </div>
