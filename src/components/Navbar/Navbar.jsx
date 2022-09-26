@@ -34,7 +34,7 @@ export default function Navbar({ user, handleLogout }) {
                     <li><Link to="/browse" style={{ pointerEvents: 'none' }}>Browse</Link></li>
                     <li><Link to="/search/anime">Anime</Link></li>
                     <li><Link to="/search/manga" style={{ pointerEvents: 'none' }}>Manga</Link></li>
-                    <li><Link to="/news">News</Link></li>
+                    <li><Link to="/news" style={{ pointerEvents: 'none' }}>News</Link></li>
                 </ul>
             </div>
             <div className="navbar-end">
