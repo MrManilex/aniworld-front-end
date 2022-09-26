@@ -1,16 +1,16 @@
-import { useEffect, useState } from 'react';
-import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
-import { searchAnimes } from '../../services/animeService';
-import { useAuthContext } from "../../hooks/useAuthContext";
+import { useEffect, useState } from 'react'
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom"
+import { searchAnimes } from '../../services/animeService'
+import { useAuthContext } from "../../hooks/useAuthContext"
 import { useLogout } from '../../hooks/useLogout'
-import Navbar from '../../components/Navbar/Navbar';
-import Login from "../Login/Login";
-import Signup from "../Signup/Signup";
-import Home from "../Home/Home";
-import AnimeSearch from '../AnimeSearch/AnimeSearch';
-import AnimeDetails from '../AnimeDetails/AnimeDetails';
-import Profile from '../Profile/Profile';
-import ProfileSettings from '../ProfileSettings/ProfileSettings';
+import Navbar from '../../components/Navbar/Navbar'
+import Login from "../Login/Login"
+import Signup from "../Signup/Signup"
+import Home from "../Home/Home"
+import AnimeSearch from '../AnimeSearch/AnimeSearch'
+import AnimeDetails from '../AnimeDetails/AnimeDetails'
+import Profile from '../Profile/Profile'
+import ProfileSettings from '../ProfileSettings/ProfileSettings'
 
 function App() {
   const [animes, setAnimes] = useState(null)
@@ -66,7 +66,7 @@ function App() {
         <Route path='/anime/:id' element={<AnimeDetails />} />
       </Routes>
     </>
-  );
+  )
 }
 
-export default App;
+export default App
