@@ -53,7 +53,7 @@ function App() {
     <>
       <Navbar handleLogout={handleLogout} user={user} />
       <Routes>
-        <Route path='/home' element={user ? <Home /> : <Navigate to='/login' />} />
+        <Route path='/home' element={user ? <Home setAnimes={setAnimes} /> : <Navigate to='/login' />} />
         <Route path='/login' element={!user ? <Login /> : <Navigate to='/home' />} />
         <Route path='/signup' element={!user ? <Signup /> : <Navigate to='/home' />} />
 

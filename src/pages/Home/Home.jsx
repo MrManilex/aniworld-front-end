@@ -1,8 +1,13 @@
 import React from 'react'
 import Trending from '../../components/Trending/Trending'
 import CurrentlyWatching from '../../components/CurrentlyWatching/CurrentlyWatching'
+import { useEffect } from 'react'
 
-const Home = () => {
+const Home = ({ setAnimes }) => {
+
+    useEffect(() => {
+        setAnimes(null)
+    })
 
     return (
         <>
