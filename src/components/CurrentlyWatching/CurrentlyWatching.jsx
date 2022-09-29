@@ -1,12 +1,16 @@
 import React from 'react'
-import { useEffect } from 'react'
-import { useState } from 'react'
+import { useEffect, useState  } from 'react'
+import { getCurrentlyWatching } from '../../services/profileService'
 
-export default function CurrentlyWatching() {
+export default function CurrentlyWatching({ user }) {
     const [current, setCurrent] = useState(null)
 
     useEffect(() => {
         // call function to retrieve logged in user's currently watching list
+        // getCurrentlyWatching(user.profile._id)
+        //     .then(animes => {
+        //         setCurrent(animes)
+        //     })
     }, [])
 
     return (
