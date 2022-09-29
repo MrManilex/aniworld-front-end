@@ -1,18 +1,6 @@
+import { getToken } from "./tokenService"
 const BASE_URL = '/api/animes'
 
-function getToken() {
-    let user = localStorage.getItem('user')
-    let parsedUser = JSON.parse(user)
-    let token = parsedUser.token
-    // if (token) {
-    //     const payload = JSON.parse(atob(token.split('.')[1]))
-    //     if (payload.exp < Date.now() / 1000) {
-    //         localStorage.removeItem('user')
-    //         token = null
-    //     }
-    // }
-    return token
-}
 
 function searchAnimes(title) {
     return fetch(BASE_URL, {
