@@ -13,17 +13,18 @@ export default function Navbar({ user, handleLogout }) {
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         <li><Link to="/home">Home</Link></li>
                         <li tabIndex={0}>
-                            <Link to='' className="justify-between">
-                                Search
-                                <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+                            {/* fix link to not go anywhere */}
+                            <Link to='/search/anime' className="justify-between">
+                                Search Anime
+                                {/* <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg> */}
                             </Link>
-                            <ul className="p-2">
+                            {/* <ul className="p-2">
                                 <li><Link to="/search/anime">Anime</Link></li>
                                 <li><Link to="/search/manga" style={{ pointerEvents: 'none' }}>Manga</Link></li>
-                            </ul>
+                            </ul> */}
                         </li>
                         <li><Link to="/browse" style={{ pointerEvents: 'none' }}>Browse</Link></li>
-                        <li><Link to="/news">News</Link></li>
+                        <li><Link to="/news" style={{ pointerEvents: 'none' }}>News</Link></li>
                     </ul>
                 </div>
                 <Link to="/home" className="btn btn-ghost normal-case text-xl">AniWorld</Link>
