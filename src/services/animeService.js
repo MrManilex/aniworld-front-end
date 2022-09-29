@@ -1,7 +1,6 @@
 import { getToken } from "./tokenService"
 const BASE_URL = '/api/animes'
 
-
 function searchAnimes(title) {
     return fetch(BASE_URL, {
         method: 'POST',
@@ -48,10 +47,16 @@ function addToWatching(animeData) {
         })
 }
 
+function getAnime(id) {
+    return fetch(`${BASE_URL}/${id}`)
+        .then(res => res.json())
+}
+
 export {
     searchAnimes,
     getTrending,
     getUpcoming,
     getATPopular,
-    addToWatching
+    addToWatching,
+    getAnime
 }

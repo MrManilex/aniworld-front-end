@@ -22,9 +22,9 @@ function App() {
   const { logout } = useLogout()
   const navigate = useNavigate()
 
-  useEffect(() => {
-    navigate('/home')
-  }, [])
+  // useEffect(() => {
+  //   navigate('/home')
+  // }, [])
 
   const handleSearch = evt => {
     evt.preventDefault()
