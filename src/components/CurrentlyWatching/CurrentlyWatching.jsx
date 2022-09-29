@@ -31,12 +31,13 @@ export default function CurrentlyWatching({ user }) {
                         {current[0] ?
                             <div className='flex flex-row flex-wrap mx-5'>
                                 {current.map(anime =>
-                                    <div key={anime.id} className='mx-8 mb-2'>
+                                    <div key={anime.animeId} className='mx-8 mb-2'>
                                         <div className='w-60'>
                                             <div className="card bg-base-100 shadow-xl h-auto w-60 ">
-                                                <Link to={`/anime/${anime.id}`} state={anime}>
+                                                {/* fix state passed through each link */}
+                                                <Link to={`/anime/${anime.animeId}`} state={anime}>
                                                     <figure className='min-h-full'>
-                                                        {/* <img src={anime.coverImage} alt={anime.animeTitle} className='min-w-full h-full' /> */}
+                                                        <img src={anime.coverImage} alt={anime.animeTitle} className='min-w-full h-full' />
                                                     </figure>
                                                 </Link>
                                             </div>

@@ -8,6 +8,7 @@ export default function AnimeDetails() {
     const [formData, setFormData] = useState({
         animeTitle: anime.title.userPreferred,
         animeId: anime.id,
+        coverImage: anime.coverImage.large
     })
 
     useEffect(() => {
