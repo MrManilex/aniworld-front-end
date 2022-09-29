@@ -27,9 +27,9 @@ export default function CurrentlyWatching({ user }) {
                     </>
                     :
                     <>
-                        <h2 className="text-4xl my-6 mx-8">Currently Watching</h2>
+                        <h2 className="text-center text-3xl my-6 mx-8">Currently Watching</h2>
                         {current[0] ?
-                            <div className='flex flex-row flex-wrap mx-5'>
+                            <div className='flex flex-row justify-center flex-wrap mx-5'>
                                 {current.map(anime =>
                                     <div key={anime.animeId} className='mx-8 mb-2'>
                                         <div className='w-60'>
