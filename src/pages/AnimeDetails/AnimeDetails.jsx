@@ -42,13 +42,14 @@ export default function AnimeDetails() {
         }
     }, [anime, location.pathname])
 
-
+    // clicking addToWatching button too fast will be unable to grab anime id therefore breaking code
     const handleAddToWatching = () => {
         setFormData({
             animeTitle: anime.title.userPreferred,
             animeId: anime.id,
             coverImage: anime.coverImage.large
         })
+        console.log(formData)
         addToWatching(formData)
         
     }
