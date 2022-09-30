@@ -40,7 +40,7 @@ export default function AnimeDetails() {
                     setLoading(false)
                 })
         }
-    }, [])
+    }, [anime, location.pathname])
 
 
     const handleAddToWatching = () => {
@@ -50,6 +50,7 @@ export default function AnimeDetails() {
             coverImage: anime.coverImage.large
         })
         addToWatching(formData)
+        
     }
 
     if (loading) {
