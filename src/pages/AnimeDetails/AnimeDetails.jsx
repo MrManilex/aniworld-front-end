@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import { addToWatching } from '../../services/animeService'
 import { getAnime } from '../../services/animeService'
 
-export default function AnimeDetails() {
+export default function AnimeDetails({ currWatching, setCurrWatching }) {
     const location = useLocation()
     const [anime, setAnime] = useState(location.state)
     const [loading, setLoading] = useState(true)
@@ -44,14 +44,21 @@ export default function AnimeDetails() {
 
     // clicking addToWatching button too fast will be unable to grab anime id therefore breaking code
     const handleAddToWatching = () => {
+        // find a fix for formData retrieving anime data before anime state has been FULLY updated
         setFormData({
             animeTitle: anime.title.userPreferred,
             animeId: anime.id,
             coverImage: anime.coverImage.large
         })
-        console.log(formData)
-        addToWatching(formData)
-        
+        // console.log(formData, currWatching.includes(anime.title.userPreferred))
+
+        // if (currWatching.includes(anime.title.userPreferred) === true) {
+        //     console.log('user currently is watching this!!')
+        // } else {
+        //     addToWatching(formData)
+        //     setCurrWatching([...currWatching, anime.title.userPreferred])
+        // }
+        // console.log(currWatching)
     }
 
     if (loading) {
@@ -72,6 +79,7 @@ export default function AnimeDetails() {
                         <div className='mt-5'>
                             <img src={anime.coverImage.large} alt={anime.title.english ? anime.title.english : anime.title.userPreferred} />
                             <div className='flex flex-col'>
+                                {/* conditionally render buttons based on state from currWatching to be able to remove from watching/planning to watch */}
                                 <button onClick={handleAddToWatching} className='justify-self-center btn btn-info mt-5'>Add To Watching</button>
                                 <button className='justify-self-center btn btn-secondary mt-5'>Add To Planning</button>
                             </div>

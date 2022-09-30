@@ -17,6 +17,7 @@ function App() {
   const [formData, setFormData] = useState({
     title: ''
   })
+  const [currWatching, setCurrWatching] = useState([])
 
   const { user } = useAuthContext()
   const { logout } = useLogout()
@@ -61,7 +62,7 @@ function App() {
 
         {/* Anime Section */}
         <Route path='/search/anime' element={<AnimeSearch animes={animes} handleChange={handleChange} handleSearch={handleSearch} />} />
-        <Route path='/anime/:id' element={<AnimeDetails />} />
+        <Route path='/anime/:id' element={<AnimeDetails currWatching={currWatching} setCurrWatching={setCurrWatching}/>} />
       </Routes>
     </>
   )
