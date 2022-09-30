@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom"
 import { searchAnimes } from '../../services/animeService'
 import { useAuthContext } from "../../hooks/useAuthContext"
@@ -22,9 +22,6 @@ function App() {
   const { logout } = useLogout()
   const navigate = useNavigate()
 
-  // useEffect(() => {
-  //   navigate('/home')
-  // }, [])
 
   const handleSearch = evt => {
     evt.preventDefault()
