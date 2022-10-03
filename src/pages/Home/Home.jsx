@@ -3,7 +3,7 @@ import Trending from '../../components/Trending/Trending'
 import CurrentlyWatching from '../../components/CurrentlyWatching/CurrentlyWatching'
 import { useEffect } from 'react'
 
-const Home = ({ setAnimes, user }) => {
+const Home = ({ setAnimes, animeList }) => {
 
     useEffect(() => {
         setAnimes(null)
@@ -13,7 +13,7 @@ const Home = ({ setAnimes, user }) => {
         <>
             <main>
                 <h2 className="text-center text-4xl m-5">Home Page</h2>
-                <CurrentlyWatching user={user} />
+                <CurrentlyWatching animeList={animeList} />
                 <Trending />
             </main>
         </>

@@ -3,18 +3,20 @@ import { useEffect, useState } from 'react'
 import { getCurrentlyWatching } from '../../services/profileService'
 import { Link } from 'react-router-dom'
 
-export default function CurrentlyWatching({ user }) {
-    const [current, setCurrent] = useState(null)
+export default function CurrentlyWatching({ animeList }) {
+    // const [current, setCurrent] = useState(null)
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         // call function to retrieve logged in user's currently watching list
-        getCurrentlyWatching(user.profile._id)
-            .then(animes => {
-                setCurrent(animes)
-                setLoading(false)
-            })
-    }, [])
+        // getCurrentlyWatching(user.profile._id)
+        //     .then(animes => {
+        //         setCurrent(animes)
+        //     })
+        if (animeList) {
+            setLoading(false)
+        }
+    }, [animeList])
 
     return (
         <>
@@ -28,9 +30,9 @@ export default function CurrentlyWatching({ user }) {
                     :
                     <>
                         <h2 className="text-center text-3xl my-6 mx-8">Currently Watching</h2>
-                        {current[0] ?
+                        {animeList[0] ?
                             <div className='flex flex-row justify-center flex-wrap mx-5'>
-                                {current.map(anime =>
+                                {animeList.map(anime =>
                                     <div key={anime.animeId} className='mx-8 mb-2'>
                                         <div className='w-60'>
                                             <div className="card bg-base-100 shadow-xl h-auto w-60 ">

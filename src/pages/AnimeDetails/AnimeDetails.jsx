@@ -67,14 +67,16 @@ export default function AnimeDetails({ currWatching, setCurrWatching }) {
             // pass state into this component for further checking 
 
         console.log(formData, currWatching.includes(anime.title.userPreferred))
-
         // uses currWatching state to determine if user is or is not watching currently viewed anime
         if (currWatching.includes(anime.title.userPreferred) === true) {
             console.log('user currently is watching this!!')
         } else {
             console.log('user added', anime.title.userPreferred, 'to watching!!')
             addToWatching(formData)
-            setCurrWatching([...currWatching, anime.title.userPreferred])
+            // .then((anime) => {
+            //     console.log(anime)
+            // })
+            setCurrWatching([...currWatching, anime.title.english ? anime.title.english : anime.title.userPreferred])
         }
     }
 

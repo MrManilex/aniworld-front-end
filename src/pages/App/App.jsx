@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom"
 import { searchAnimes } from '../../services/animeService'
 import { useAuthContext } from "../../hooks/useAuthContext"
@@ -11,6 +11,7 @@ import AnimeSearch from '../AnimeSearch/AnimeSearch'
 import AnimeDetails from '../AnimeDetails/AnimeDetails'
 import Profile from '../Profile/Profile'
 import ProfileSettings from '../ProfileSettings/ProfileSettings'
+import { getCurrentlyWatching } from '../../services/profileService'
 
 function App() {
   const [animes, setAnimes] = useState(null)
@@ -18,10 +19,26 @@ function App() {
     title: ''
   })
   const [currWatching, setCurrWatching] = useState([])
+  const [animeList, setAnimeList] = useState(null)
 
   const { user } = useAuthContext()
   const { logout } = useLogout()
   const navigate = useNavigate()
+
+  useEffect(() => {
+    // call function to retrieve logged in user's currently watching list
+    if (user) {
+      getCurrentlyWatching(user.profile._id)
+        .then(animes => {
+          setAnimeList(animes)
+          const aniTitles = []
+          animes.forEach(anime => {
+            aniTitles.push(anime.animeTitle)
+          })
+          setCurrWatching(aniTitles)
+        })
+    }
+  }, [user])
 
 
   const handleSearch = evt => {
@@ -52,7 +69,7 @@ function App() {
       <Navbar handleLogout={handleLogout} user={user} />
       <Routes>
         <Route path='/' element={user ? <Navigate to='/home' /> : <Navigate to='/login' />} />
-        <Route path='/home' element={user ? <Home setAnimes={setAnimes} user={user} /> : <Navigate to='/login' />} />
+        <Route path='/home' element={user ? <Home setAnimes={setAnimes} animeList={animeList} /> : <Navigate to='/login' />} />
         <Route path='/login' element={!user ? <Login setAnimes={setAnimes} /> : <Navigate to='/home' />} />
         <Route path='/signup' element={!user ? <Signup /> : <Navigate to='/home' />} />
 
@@ -62,7 +79,7 @@ function App() {
 
         {/* Anime Section */}
         <Route path='/search/anime' element={<AnimeSearch animes={animes} handleChange={handleChange} handleSearch={handleSearch} />} />
-        <Route path='/anime/:id' element={<AnimeDetails currWatching={currWatching} setCurrWatching={setCurrWatching}/>} />
+        <Route path='/anime/:id' element={<AnimeDetails currWatching={currWatching} setCurrWatching={setCurrWatching} setAnimeList={setAnimeList} animeList={animeList}/>} />
       </Routes>
     </>
   )
