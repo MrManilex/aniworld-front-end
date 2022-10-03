@@ -20,6 +20,12 @@ export default function AnimeDetails({ currWatching, setCurrWatching }) {
         // if retrieved from mongo...
         if (anime) {
             if (anime._id) {
+                // set form data with data already present "mongodb anime data"
+                setFormData({
+                    animeTitle: anime.animeTitle,
+                    animeId: anime.animeId,
+                    coverImage: anime.coverImage
+                })
                 // get specific anime here
                 getAnime(anime.animeId)
                     .then(anime => {
@@ -28,10 +34,16 @@ export default function AnimeDetails({ currWatching, setCurrWatching }) {
                         setLoading(false)
                     })
             } else {
+                // if there is no anime._id, anime was retrieved from AniList API is to be assumed 
+                setFormData({
+                    animeTitle: anime.title.userPreferred,
+                    animeId: anime.id,
+                    coverImage: anime.coverImage.large
+                })
                 setLoading(false)
             }
         } else {
-            // will fire if path is directly saved and accessed
+            // anime was not found or link was directly entered 
             const animeId = parseInt(location.pathname.replace(/\D+/, ''))
             getAnime(animeId)
                 .then(anime => {
@@ -39,26 +51,31 @@ export default function AnimeDetails({ currWatching, setCurrWatching }) {
                     setAnime(anime)
                     setLoading(false)
                 })
+            // set form data retrieved from AniList API 
+            setFormData({
+                animeTitle: anime.title.userPreferred,
+                animeId: anime.id,
+                coverImage: anime.coverImage.large
+            })
         }
-    }, [anime, location.pathname])
+    }, [])
 
     // clicking addToWatching button too fast will be unable to grab anime id therefore breaking code
     const handleAddToWatching = () => {
-        // find a fix for formData retrieving anime data before anime state has been FULLY updated
-        setFormData({
-            animeTitle: anime.title.userPreferred,
-            animeId: anime.id,
-            coverImage: anime.coverImage.large
-        })
-        // console.log(formData, currWatching.includes(anime.title.userPreferred))
+        // check user profile data or state to find out if they have they are currently watching the anime or not.
+            // ways of doing this would include storing user data in state as an array and there checking if it is there or not
+            // pass state into this component for further checking 
 
-        // if (currWatching.includes(anime.title.userPreferred) === true) {
-        //     console.log('user currently is watching this!!')
-        // } else {
-        //     addToWatching(formData)
-        //     setCurrWatching([...currWatching, anime.title.userPreferred])
-        // }
-        // console.log(currWatching)
+        console.log(formData, currWatching.includes(anime.title.userPreferred))
+
+        // uses currWatching state to determine if user is or is not watching currently viewed anime
+        if (currWatching.includes(anime.title.userPreferred) === true) {
+            console.log('user currently is watching this!!')
+        } else {
+            console.log('user added', anime.title.userPreferred, 'to watching!!')
+            addToWatching(formData)
+            setCurrWatching([...currWatching, anime.title.userPreferred])
+        }
     }
 
     if (loading) {
@@ -116,7 +133,6 @@ export default function AnimeDetails({ currWatching, setCurrWatching }) {
                                 </>
                             }
                         </div>
-
 
                         {anime.trailer &&
                             <>
