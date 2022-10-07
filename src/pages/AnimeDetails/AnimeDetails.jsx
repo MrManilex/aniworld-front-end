@@ -57,7 +57,7 @@ export default function AnimeDetails({ currWatching, setCurrWatching }) {
                 coverImage: anime.coverImage.large
             })
         }
-    }, [anime, location.pathname])
+    }, [])
 
     const handleAddToWatching = () => {
         // uses currWatching state to determine if user is or is not watching currently viewed anime
