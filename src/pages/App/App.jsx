@@ -29,16 +29,20 @@ function App() {
     // call function to retrieve logged in user's currently watching list
     if (user) {
       getCurrentlyWatching(user.profile._id)
-        .then(animes => {
-          setAnimeList(animes)
-          const aniTitles = []
-          animes.forEach(anime => {
-            aniTitles.push(anime.animeTitle)
-          })
-          setCurrWatching(aniTitles)
+        .then(response => {
+          if (response.error) {
+            logout()
+          } else {
+            setAnimeList(response)
+            const aniTitles = []
+            response.forEach(anime => {
+              aniTitles.push(anime.animeTitle)
+            })
+            setCurrWatching(aniTitles)
+          }
         })
     }
-  }, [user])
+  }, [user, logout])
 
 
   const handleSearch = evt => {
@@ -79,7 +83,7 @@ function App() {
 
         {/* Anime Section */}
         <Route path='/search/anime' element={<AnimeSearch animes={animes} handleChange={handleChange} handleSearch={handleSearch} />} />
-        <Route path='/anime/:id' element={<AnimeDetails currWatching={currWatching} setCurrWatching={setCurrWatching} setAnimeList={setAnimeList} animeList={animeList}/>} />
+        <Route path='/anime/:id' element={<AnimeDetails currWatching={currWatching} setCurrWatching={setCurrWatching} setAnimeList={setAnimeList} animeList={animeList} />} />
       </Routes>
     </>
   )
