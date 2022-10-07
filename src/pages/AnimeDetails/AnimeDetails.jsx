@@ -71,11 +71,7 @@ export default function AnimeDetails({ currWatching, setCurrWatching }) {
         if (currWatching.includes(anime.title.userPreferred) === true) {
             console.log('user currently is watching this!!')
         } else {
-            console.log('user added', anime.title.userPreferred, 'to watching!!')
             addToWatching(formData)
-            // .then((anime) => {
-            //     console.log(anime)
-            // })
             setCurrWatching([...currWatching, anime.title.english ? anime.title.english : anime.title.userPreferred])
         }
     }
