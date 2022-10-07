@@ -15,10 +15,9 @@ export default function AnimeDetails({ currWatching, setCurrWatching }) {
 
     useEffect(() => {
         window.scrollTo(0, 0)
-        // this checks if anime was retrieved from MongoDB or Anilist API
-        // this will also retrieve anime if directly clicking on link
-        // if retrieved from mongo...
+        // this checks if anime was retrieved from MongoDB or Anilist API and will also retrieve anime if directly clicking on link
         if (anime) {
+            // if retrieved from mongo...
             if (anime._id) {
                 // set form data with data already present "mongodb anime data"
                 setFormData({
@@ -58,22 +57,20 @@ export default function AnimeDetails({ currWatching, setCurrWatching }) {
                 coverImage: anime.coverImage.large
             })
         }
-    }, [])
+    }, [anime, location.pathname])
 
-    // clicking addToWatching button too fast will be unable to grab anime id therefore breaking code
     const handleAddToWatching = () => {
-        // check user profile data or state to find out if they have they are currently watching the anime or not.
-            // ways of doing this would include storing user data in state as an array and there checking if it is there or not
-            // pass state into this component for further checking 
-
-        console.log(formData, currWatching.includes(anime.title.userPreferred))
         // uses currWatching state to determine if user is or is not watching currently viewed anime
-        if (currWatching.includes(anime.title.userPreferred) === true) {
+        if (currWatching.includes(anime.title.userPreferred)) {
             console.log('user currently is watching this!!')
         } else {
             addToWatching(formData)
             setCurrWatching([...currWatching, anime.title.english ? anime.title.english : anime.title.userPreferred])
         }
+    }
+
+    const handleRemoveFromWatching = () => {
+        console.log('User Wants to Remove!!!')
     }
 
     if (loading) {
@@ -95,8 +92,17 @@ export default function AnimeDetails({ currWatching, setCurrWatching }) {
                             <img src={anime.coverImage.large} alt={anime.title.english ? anime.title.english : anime.title.userPreferred} />
                             <div className='flex flex-col'>
                                 {/* conditionally render buttons based on state from currWatching to be able to remove from watching/planning to watch */}
-                                <button onClick={handleAddToWatching} className='justify-self-center btn btn-info mt-5'>Add To Watching</button>
-                                <button className='justify-self-center btn btn-secondary mt-5'>Add To Planning</button>
+                                {!currWatching.includes(anime.title.userPreferred) ?
+                                    <>
+                                        <button onClick={handleAddToWatching} className='justify-self-center btn btn-info mt-5'>Add To Watching</button>
+                                        {/* <button className='justify-self-center btn btn-secondary mt-5'>Add To Planning</button> */}
+                                    </>
+                                    :
+                                    <>
+                                        <button onClick={handleRemoveFromWatching} className='justify-self-center btn btn-danger mt-5'>Remove From Watching</button>
+                                        {/* <button className='justify-self-center btn btn-secondary mt-5'>Add To Planning</button> */}
+                                    </>
+                                }
                             </div>
                         </div>
                         <div className='m-8 w-3/5'>
