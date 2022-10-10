@@ -42,7 +42,7 @@ function App() {
           }
         })
     }
-  }, [user, logout])
+  }, [user])
 
 
   const handleSearch = evt => {
