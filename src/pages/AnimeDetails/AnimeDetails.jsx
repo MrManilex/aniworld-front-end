@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import { addToWatching } from '../../services/animeService'
 import { getAnime } from '../../services/animeService'
 
-export default function AnimeDetails({ currWatching, setCurrWatching }) {
+export default function AnimeDetails({ setAnimeList, animeList, user }) {
     const location = useLocation()
     const [anime, setAnime] = useState(location.state)
     const [loading, setLoading] = useState(true)
@@ -12,6 +12,7 @@ export default function AnimeDetails({ currWatching, setCurrWatching }) {
         animeId: '',
         coverImage: ''
     })
+    const [watching, setWatching] = useState(false)
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -60,20 +61,17 @@ export default function AnimeDetails({ currWatching, setCurrWatching }) {
     }, [])
 
     const handleAddToWatching = () => {
-        // uses currWatching state to determine if user is or is not watching currently viewed anime
-        if (currWatching.includes(anime.title.userPreferred)) {
-            console.log('user currently is watching this!!')
-        } else {
-            addToWatching(formData)
-            setCurrWatching([...currWatching, anime.title.english ? anime.title.english : anime.title.userPreferred])
-        }
+        addToWatching(formData)
+        setWatching(true)
     }
 
     const handleRemoveFromWatching = () => {
-        console.log('User Wants to Remove!!!')
+        animeList.splice(animeList.indexOf(anime.title.userPreferred), 1)
+        // remove anime from backend here
+        setWatching(false)
     }
 
-    if (loading) {
+    if (loading && anime) {
         return (
             <>
                 <h1 className='text-center text-3xl'>loading....</h1>
@@ -92,14 +90,14 @@ export default function AnimeDetails({ currWatching, setCurrWatching }) {
                             <img src={anime.coverImage.large} alt={anime.title.english ? anime.title.english : anime.title.userPreferred} />
                             <div className='flex flex-col'>
                                 {/* conditionally render buttons based on state from currWatching to be able to remove from watching/planning to watch */}
-                                {!currWatching.includes(anime.title.userPreferred) ?
+                                {watching ?
                                     <>
-                                        <button onClick={handleAddToWatching} className='justify-self-center btn btn-info mt-5'>Add To Watching</button>
+                                        <button onClick={handleRemoveFromWatching} className='justify-self-center btn btn-danger mt-5'>Remove From Watching</button>
                                         {/* <button className='justify-self-center btn btn-secondary mt-5'>Add To Planning</button> */}
                                     </>
                                     :
                                     <>
-                                        <button onClick={handleRemoveFromWatching} className='justify-self-center btn btn-danger mt-5'>Remove From Watching</button>
+                                        <button onClick={handleAddToWatching} className='justify-self-center btn btn-info mt-5'>Add To Watching</button>
                                         {/* <button className='justify-self-center btn btn-secondary mt-5'>Add To Planning</button> */}
                                     </>
                                 }

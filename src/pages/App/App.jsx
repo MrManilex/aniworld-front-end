@@ -18,7 +18,6 @@ function App() {
   const [formData, setFormData] = useState({
     title: ''
   })
-  const [currWatching, setCurrWatching] = useState([])
   const [animeList, setAnimeList] = useState(null)
 
   const { user } = useAuthContext()
@@ -34,16 +33,10 @@ function App() {
             logout()
           } else {
             setAnimeList(response)
-            const aniTitles = []
-            response.forEach(anime => {
-              aniTitles.push(anime.animeTitle)
-            })
-            setCurrWatching(aniTitles)
           }
         })
     }
   }, [user])
-
 
   const handleSearch = evt => {
     evt.preventDefault()
@@ -83,7 +76,9 @@ function App() {
 
         {/* Anime Section */}
         <Route path='/search/anime' element={<AnimeSearch animes={animes} handleChange={handleChange} handleSearch={handleSearch} />} />
-        <Route path='/anime/:id' element={<AnimeDetails currWatching={currWatching} setCurrWatching={setCurrWatching} setAnimeList={setAnimeList} animeList={animeList} />} />
+        <Route path='/anime/:id'
+          element={
+            <AnimeDetails user={user} setAnimeList={setAnimeList} animeList={animeList} />} />
       </Routes>
     </>
   )
