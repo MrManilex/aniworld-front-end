@@ -89,16 +89,20 @@ export default function AnimeDetails({ setAnimeList, animeList, user }) {
                         <div className='mt-5'>
                             <img src={anime.coverImage.large} alt={anime.title.english ? anime.title.english : anime.title.userPreferred} />
                             <div className='flex flex-col'>
-                                {/* conditionally render buttons based on state from currWatching to be able to remove from watching/planning to watch */}
-                                {watching ?
+                                {user &&
                                     <>
-                                        <button onClick={handleRemoveFromWatching} className='justify-self-center btn btn-danger mt-5'>Remove From Watching</button>
-                                        {/* <button className='justify-self-center btn btn-secondary mt-5'>Add To Planning</button> */}
-                                    </>
-                                    :
-                                    <>
-                                        <button onClick={handleAddToWatching} className='justify-self-center btn btn-info mt-5'>Add To Watching</button>
-                                        {/* <button className='justify-self-center btn btn-secondary mt-5'>Add To Planning</button> */}
+                                        {/* conditionally render buttons based on state from currWatching to be able to remove from watching/planning to watch */}
+                                        {watching ?
+                                            <>
+                                                <button onClick={handleRemoveFromWatching} className='justify-self-center btn btn-danger mt-5'>Remove From Watching</button>
+                                                {/* <button className='justify-self-center btn btn-secondary mt-5'>Add To Planning</button> */}
+                                            </>
+                                            :
+                                            <>
+                                                <button onClick={handleAddToWatching} className='justify-self-center btn btn-info mt-5'>Add To Watching</button>
+                                                {/* <button className='justify-self-center btn btn-secondary mt-5'>Add To Planning</button> */}
+                                            </>
+                                        }
                                     </>
                                 }
                             </div>
