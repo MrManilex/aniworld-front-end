@@ -4,9 +4,15 @@ import { getCurrentlyWatching } from '../../services/profileService'
 import { Link } from 'react-router-dom'
 
 export default function CurrentlyWatching({ animeList }) {
+    // const [current, setCurrent] = useState(null)
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
+        // call function to retrieve logged in user's currently watching list
+        // getCurrentlyWatching(user.profile._id)
+        //     .then(animes => {
+        //         setCurrent(animes)
+        //     })
         if (animeList) {
             setLoading(false)
         }
