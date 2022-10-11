@@ -14,7 +14,7 @@ import ProfileSettings from '../ProfileSettings/ProfileSettings'
 import { getCurrentlyWatching } from '../../services/profileService'
 
 function App() {
-  const [animes, setAnimes] = useState(null)
+  const [animeResults, setAnimeResults] = useState(null)
   const [formData, setFormData] = useState({
     title: ''
   })
@@ -42,7 +42,7 @@ function App() {
     evt.preventDefault()
     searchAnimes(formData)
       .then(animes => {
-        setAnimes(animes)
+        setAnimeResults(animes)
       }).catch(error => {
         console.log(error)
       })
@@ -57,7 +57,7 @@ function App() {
 
   const handleLogout = () => {
     logout()
-    setAnimes(null)
+    setAnimeResults(null)
     navigate('/home')
   }
 
@@ -66,8 +66,8 @@ function App() {
       <Navbar handleLogout={handleLogout} user={user} />
       <Routes>
         <Route path='/' element={user ? <Navigate to='/home' /> : <Navigate to='/login' />} />
-        <Route path='/home' element={user ? <Home setAnimes={setAnimes} animeList={animeList} /> : <Navigate to='/login' />} />
-        <Route path='/login' element={!user ? <Login setAnimes={setAnimes} /> : <Navigate to='/home' />} />
+        <Route path='/home' element={user ? <Home setAnimeResults={setAnimeResults} animeList={animeList} /> : <Navigate to='/login' />} />
+        <Route path='/login' element={!user ? <Login setAnimeResults={setAnimeResults} /> : <Navigate to='/home' />} />
         <Route path='/signup' element={!user ? <Signup /> : <Navigate to='/home' />} />
 
         {/* Profile Section */}
@@ -75,10 +75,9 @@ function App() {
         <Route path='/user/settings' element={user ? <ProfileSettings user={user} /> : <Login />} />
 
         {/* Anime Section */}
-        <Route path='/search/anime' element={<AnimeSearch animes={animes} handleChange={handleChange} handleSearch={handleSearch} />} />
+        <Route path='/search/anime' element={<AnimeSearch animeResults={animeResults} handleChange={handleChange} handleSearch={handleSearch} />} />
         <Route path='/anime/:id'
-          element={
-            <AnimeDetails user={user} setAnimeList={setAnimeList} animeList={animeList} />} />
+          element={<AnimeDetails user={user} setAnimeList={setAnimeList} animeList={animeList} />} />
       </Routes>
     </>
   )

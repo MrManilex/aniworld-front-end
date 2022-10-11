@@ -3,10 +3,10 @@ import Trending from '../../components/Trending/Trending'
 import CurrentlyWatching from '../../components/CurrentlyWatching/CurrentlyWatching'
 import { useEffect } from 'react'
 
-const Home = ({ setAnimes, animeList }) => {
+const Home = ({ setAnimeResults, animeList }) => {
 
     useEffect(() => {
-        setAnimes(null)
+        setAnimeResults(null)
     })
 
     return (

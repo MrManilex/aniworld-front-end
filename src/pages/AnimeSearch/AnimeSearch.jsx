@@ -4,7 +4,7 @@ import ATPopular from '../../components/ATPopular/ATPopular'
 import Trending from '../../components/Trending/Trending'
 import Upcoming from '../../components/Upcoming/Upcoming'
 
-export default function AnimeSearch({ animes, handleChange, handleSearch }) {
+export default function AnimeSearch({ animeResults, handleChange, handleSearch }) {
     return (
         <>
             <main>
@@ -14,9 +14,9 @@ export default function AnimeSearch({ animes, handleChange, handleSearch }) {
                         <button className='btn btn-primary mx-4'>Search</button>
                     </form>
                 </div>
-                {animes ?
+                {animeResults ?
                     <div className='flex flex-row flex-wrap place-content-center'>
-                        {animes.map(anime =>
+                        {animeResults.map(anime =>
                             <div key={anime.id} className='mx-8 mb-2'>
                                 <div className='w-60'>
                                     <div className="card bg-base-100 shadow-xl h-auto w-60 ">
