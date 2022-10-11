@@ -62,6 +62,7 @@ export default function AnimeDetails({ setAnimeList, animeList, user }) {
 
     const handleAddToWatching = () => {
         addToWatching(formData)
+        setAnimeList([...animeList, anime])
         setWatching(true)
     }
 
