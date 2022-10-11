@@ -76,9 +76,7 @@ function App() {
 
         {/* Anime Section */}
         <Route path='/search/anime' element={<AnimeSearch animes={animes} handleChange={handleChange} handleSearch={handleSearch} />} />
-        <Route path='/anime/:id'
-          element={
-            <AnimeDetails user={user} setAnimeList={setAnimeList} animeList={animeList} />} />
+        <Route path='/anime/:id' element={<AnimeDetails user={user} setAnimeList={setAnimeList} animeList={animeList} />} />
       </Routes>
     </>
   )
