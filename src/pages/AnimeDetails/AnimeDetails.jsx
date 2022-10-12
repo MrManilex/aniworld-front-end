@@ -1,17 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { addToWatching } from '../../services/animeService'
 import { getAnime } from '../../services/animeService'
+import AddToWatchingForm from '../../components/AddToWatchingForm/AddToWatchingForm'
 
 export default function AnimeDetails({ setAnimeList, animeList, user }) {
     const location = useLocation()
     const [anime, setAnime] = useState(location.state)
     const [loading, setLoading] = useState(true)
-    const [formData, setFormData] = useState({
-        animeTitle: '',
-        animeId: '',
-        coverImage: ''
-    })
     const [watching, setWatching] = useState(false)
 
     useEffect(() => {
@@ -20,12 +15,6 @@ export default function AnimeDetails({ setAnimeList, animeList, user }) {
         if (anime) {
             // if retrieved from mongo...
             if (anime._id) {
-                // set form data with data already present "mongodb anime data"
-                setFormData({
-                    animeTitle: anime.animeTitle,
-                    animeId: anime.animeId,
-                    coverImage: anime.coverImage
-                })
                 // get specific anime here
                 getAnime(anime.animeId)
                     .then(anime => {
@@ -34,12 +23,6 @@ export default function AnimeDetails({ setAnimeList, animeList, user }) {
                         setLoading(false)
                     })
             } else {
-                // if there is no anime._id, anime was retrieved from AniList API is to be assumed 
-                setFormData({
-                    animeTitle: anime.title.userPreferred,
-                    animeId: anime.id,
-                    coverImage: anime.coverImage.large
-                })
                 setLoading(false)
             }
         } else {
@@ -51,26 +34,14 @@ export default function AnimeDetails({ setAnimeList, animeList, user }) {
                     setAnime(anime)
                     setLoading(false)
                 })
-            // set form data retrieved from AniList API 
-            setFormData({
-                animeTitle: anime.title.userPreferred,
-                animeId: anime.id,
-                coverImage: anime.coverImage.large
-            })
         }
     }, [])
 
-    const handleAddToWatching = () => {
-        addToWatching(formData)
-        setAnimeList([...animeList, anime])
-        setWatching(true)
-    }
-
-    const handleRemoveFromWatching = () => {
-        animeList.splice(animeList.indexOf(anime.title.userPreferred), 1)
-        // remove anime from backend here
-        setWatching(false)
-    }
+    // const handleRemoveFromWatching = () => {
+    //     animeList.splice(animeList.indexOf(anime.title.userPreferred), 1)
+    //     // remove anime from backend here
+    //     setWatching(false)
+    // }
 
     if (loading && anime) {
         return (
@@ -91,21 +62,9 @@ export default function AnimeDetails({ setAnimeList, animeList, user }) {
                             <img src={anime.coverImage.large} alt={anime.title.english ? anime.title.english : anime.title.userPreferred} />
                             <div className='flex flex-col'>
                                 {user &&
-                                    <>
-                                        {/* conditionally render buttons based on state from currWatching to be able to remove from watching/planning to watch */}
-                                        {watching ?
-                                            <>
-                                                <button onClick={handleRemoveFromWatching} className='justify-self-center btn btn-danger mt-5'>Remove From Watching</button>
-                                                {/* <button className='justify-self-center btn btn-secondary mt-5'>Add To Planning</button> */}
-                                            </>
-                                            :
-                                            <>
-                                                <button onClick={handleAddToWatching} className='justify-self-center btn btn-info mt-5'>Add To Watching</button>
-                                                {/* <button className='justify-self-center btn btn-secondary mt-5'>Add To Planning</button> */}
-                                            </>
-                                        }
-                                    </>
+                                    <AddToWatchingForm anime={anime} animeList={animeList} setAnimeList={setAnimeList} />
                                 }
+                                {/* <button onClick={handleRemoveFromWatching} className='justify-self-center btn btn-danger mt-5'>Remove From Watching</button> */}
                             </div>
                         </div>
                         <div className='m-8 w-3/5'>
